@@ -1,0 +1,44 @@
+set {whaleHardnessMulti} = 10
+
+function generateRandomLoot():
+	set {_X} to random number between 0 and 1
+	set {_randomWeight::*} to (112*({_x}-0.5)^3+34)
+	set {_randomFish::*} to ("")
+	
+	loop 300*%{whaleHardnessMulti}% times:
+		add "Cod" to {_randomFish}
+		add "Salmon" to {_randomFish}
+	loop 150*%{whaleHardnessMulti}% times:
+		add "Trout" to {_randomFish}
+		add "TropicalFish" to {_randomFish}
+		add "Pufferfish" to {_randomFish}
+	loop 1 times:
+		add "Whale" to {_randomFish}
+	
+	set {_SalmonValue} to 1.0 # Per G
+	set {_CodValue} to .75 # Per G
+	set {_TroutValue} to 1.25 # Per G
+	set {_TropicalFishValue} to 1.50 # Per G
+	set {_PufferfishValue} to 1.75 # Per G
+	set {_WhaleValue} to 500 # Flat rate
+	
+	set {_randF} to a random element out of {_randomFish::*}
+	set {_randW} to a round(random element out of {_randomWeight::*})
+	
+	if {_randF} is "Whale":
+		send "&6[LEGENDARY] WHALE"
+		add 5 to {whaleHardnessMulti}
+	else:
+	    send "You fished up: %{_randF}%"
+		send "&3You earned: {%{_randF}%Value}*{_randW}"
+	
+	if random number between 1 and 4500 is 1:
+	    if random number between 1 and 2 is 1:
+	        send "&6[LEGENDARY] 5x ETERNAL CRATE KEY"
+	    else:
+	        send "&6[LEGENDARY] FISHING PET"
+
+on fish:
+    if "%event.getState()%" is "CAUGHT_FISH":
+        cancel event
+        generateRandomLoot()
