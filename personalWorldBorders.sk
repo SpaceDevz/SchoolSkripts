@@ -1,16 +1,19 @@
 command /createBorder <distance> [<warningDistance>]:
     trigger:
-        if arg-2 is set:
+        if %arg-2% is set:
             set client border warning distance of player to 100
         
             set client border center location of player to player's location
-            broadcast "&6%client border center location of player%"
-            broadcast "%client border size of player%"
+            # broadcast "&6%client border center location of player%"
+            # broadcast "%client border size of player%"
             loop 20 times:
                 set client border size of player to loop-number
-                broadcast "%client border size of player%"
+                # broadcast "%client border size of player%"
                 wait a second
             reset client border warning distance of player
         else:
             if arg-1 is set:
-            
+                loop %arg-1% times:
+                    set client border size of player to loop-number
+                    # broadcast "%client border size of player%"
+                    wait a second
