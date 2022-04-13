@@ -9,5 +9,4 @@ on left click:
         make gui slot "b" with barrier named "&cCOMING SOON"
 
         open the last gui to player
-
-
+    
