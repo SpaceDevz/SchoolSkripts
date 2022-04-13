@@ -1,0 +1,15 @@
+# I seperated this file from the anticheat for a few reasons, so we could very easily edit it.
+set {randomNum::moonanticheat} to random number between 0 and 3000 
+
+connect robot with name "MoonBot%{randomNum::moonanticheat}%" saved to {npc}
+
+every 2 ticks:
+    set {yaw::%player%} to player's yaw
+    set {pitch::%player%} to player's pitch
+
+every 1 tick:
+    set {1tickDif::%player%::yaw} to %{yaw::%player%} - player's yaw% * 20
+    if {1tickDif::%player%::yaw} is greater than 95:
+        teleport {npc} to %player%
+        # rotate around
+
