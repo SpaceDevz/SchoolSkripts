@@ -1,0 +1,9 @@
+on left click:
+    if player's held item is fishing rod:
+        player is sneaking
+
+        create a gui with virtual chest inventory with 3 rows named "My GUI" and shape "xxxxxxxxx", "xyz-----x" and "xxxxxxxxx"
+        make gui slot "x" with gray stained glass pane named ""
+        make gui slot "y" with book named "Faster Bite Time" with lore "%{%player%::currentMinTime}% -> %{%player%:currentMinTime}-2.5%"
+
+        open the last gui to player
