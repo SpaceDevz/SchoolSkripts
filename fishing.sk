@@ -1,4 +1,4 @@
-set {whaleHardnessMulti} = 10
+set {whaleHardnessMulti} = 1
 
 function generateRandomLoot():
 	set {_X} to random number between 0 and 1
