@@ -1,3 +1,11 @@
+# on script load:
+    # set {world} to Bukkit.getWorlds()
+    # set {worldBorder} to {world}.getCenter()
+
+# ENABLE ABOVE LINES IF YOU WANT TO USE SKRIPT-REFLECT (MORE LAG
+
+# BELOW LINES ARE USING SKELLET (HAVENT TESTED)
+
 command /createBorder <distance> [<warningDistance>]:
     trigger:
         if %arg-2% is set:
@@ -17,3 +25,10 @@ command /createBorder <distance> [<warningDistance>]:
                     set client border size of player to loop-number
                     # broadcast "%client border size of player%"
                     wait a second
+            else:
+                send "Please use the correct format. /createBorder <distance> [<warningDistance>]"
+
+command /removeBorder <player>:
+    trigger:
+        if arg-1 is set:
+            remove client border of %arg-1%
