@@ -1,11 +1,11 @@
-effect (give|spawn) %player% (crate) %string%:
+effect (give|spawn) [%player%] (crate) %string%:
     parse:
         crates(%string%, "getcrate")
         continue
     trigger:
         send "Gave crate to %player%" to player
 
-effect (give|spawn) %player% (key) %string%:
+effect (give|spawn) [%player%] (key) %string%:
     parse:
         crates(%string%, "getkey")
         continue
@@ -17,6 +17,12 @@ effect (set|change) (key) %string%:
         crates("Eternal", "set", %player%, "Key", %string% parsed as item)
     trigger:
         send "Updated Key of %{_crate}%" to %player%
+
+effect (set|change) (crate) %string%:
+    parse:
+        crates("Eternal", "set", %player%, "Crate", %string% parsed as item)
+    trigger:
+        send "Updated Crate of %{_crate}%" to %player%
 
 on script load:
     set {Eternal::Crate} to ender chest named "&3Eternal Crate"
