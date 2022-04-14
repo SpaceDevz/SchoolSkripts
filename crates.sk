@@ -1,0 +1,40 @@
+expression (give|spawn) %player% (crate) %string%:
+    parse:
+        crates(%string%, "get")
+        continue
+    get:
+
+function crates(crate: text, method: text, p: player=%player%, secondMethod: text=null, keyItem: item=null, crateItem: item=null):
+    if {_method} is "set":
+        if {_secondMethod} is not set:
+            send "Please pass in a second method."
+        else:
+            if {_secondMethod} is not "Key" or "Crate" or "key" or "crate":
+                send "Please pass in a valid second method."
+            else if {_secondMethod} is "Key" or "key":
+                if {_thirdMethod} is not set:
+                    send "Please pass in a third method."
+                else:
+                    if {_crate} is not "Eternal" or "Daily" or "Godly" or "Monthly":
+                        send "Please pass in a valid third method."
+                    else:
+                        set {%{_crate}%::Key} to {_keyItem}
+            else if {_secondMethod} is "Crate" or "crate":
+                if {_thirdMethod} is not set:
+                    send "Please pass in a third method."
+                else:
+                    if {_crate} is not "Eternal" or "Daily" or "Godly" or "Monthly":
+                        send "Please pass in a valid third method."
+                    else:
+                        set {%{_crate}%::Crate} to {_crateItem} 
+    else if {_method} is "get":
+        if {_crate} is not "Eternal" or "Daily" or "Godly" or "Monthly":
+            send "You must enter a valid crate."
+        else:
+            give 1 {%{_crate}%::Crate} to {_p}
+    else if {_method} is "key":
+        if {_crate} is not "Eternal" or "Daily" or "Godly" or "Monthly":
+            send "You must enter a valid crate."
+        else:
+            give 1 {%{_crate}%::Key} to {_p}
+
