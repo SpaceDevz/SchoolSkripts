@@ -1,21 +1,21 @@
-expression (give|spawn) %player% (crate) %string%:
+effect (give|spawn) %player% (crate) %string%:
     parse:
         crates(%string%, "getcrate")
         continue
-    get:
+    trigger:
         send "Gave crate to %player%" to player
 
-expression (give|spawn) %player% (key) %string%:
+effect (give|spawn) %player% (key) %string%:
     parse:
         crates(%string%, "getkey")
         continue
-    get:
+    trigger:
         send "Gave key to %player%" to player
 
-expression (set|change) (key) %string%:
+effect (set|change) (key) %string%:
     parse:
         crates("Eternal", "set", %player%, "Key", %string% parsed as item)
-    get:
+    trigger:
         send "Updated Key of %{_crate}%" to %player%
 
 on script load:
