@@ -12,6 +12,13 @@ expression (give|spawn) %player% (key) %string%:
     get:
         send "Gave key to %player%" to player
 
+expression (set|change) (key) %string%:
+    parse:
+        crates("Eternal", "set", %player%, "Key", %string% parsed as item)
+    get:
+        send "Updated Key of %{_crate}%" to %player%
+    
+
 function crates(crate: text, method: text, p: player=%player%, secondMethod: text=null, keyItem: item=null, crateItem: item=null):
     if {_method} is "set":
         if {_secondMethod} is not set:
