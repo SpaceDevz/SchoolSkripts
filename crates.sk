@@ -17,7 +17,15 @@ expression (set|change) (key) %string%:
         crates("Eternal", "set", %player%, "Key", %string% parsed as item)
     get:
         send "Updated Key of %{_crate}%" to %player%
-    
+
+on script load:
+    set {Eternal::Crate} to ender chest named "&3Eternal Crate"
+    set {Daily::Crate} to ender chest named "&3Daily Crate"
+    set {Godly::Crate} to ender chest named "&Godly Crate"
+    set {Monthly::Crate} to ender chest named "&f[APRIL] &3Monthly Crate"
+    set {Eternal::Key} to tripwire hook named "&Eternal Crate"
+    set {Daily::Key} to tripwire hook named "&3Daily Crate"
+    set {Godly::Key} to tripwire hook named "&Godly Crate"
 
 function crates(crate: text, method: text, p: player=%player%, secondMethod: text=null, keyItem: item=null, crateItem: item=null):
     if {_method} is "set":
@@ -48,7 +56,7 @@ function crates(crate: text, method: text, p: player=%player%, secondMethod: tex
         else:
             give 1 {%{_crate}%::Crate} to {_p}
     else if {_method} is "getkey":
-        if {_crate} is not "Eternal" or "Daily" or "Godly" or "Monthly":
+        if {_crate} is not "Eternal" or "Daily" or "Godly":
             send "You must enter a valid key."
         else:
             give 1 {%{_crate}%::Key} to {_p}
