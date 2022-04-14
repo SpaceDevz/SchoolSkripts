@@ -1,8 +1,16 @@
 expression (give|spawn) %player% (crate) %string%:
     parse:
-        crates(%string%, "get")
+        crates(%string%, "getcrate")
         continue
     get:
+        send "Gave crate to %player%" to player
+
+expression (give|spawn) %player% (key) %string%:
+    parse:
+        crates(%string%, "getkey")
+        continue
+    get:
+        send "Gave key to %player%" to player
 
 function crates(crate: text, method: text, p: player=%player%, secondMethod: text=null, keyItem: item=null, crateItem: item=null):
     if {_method} is "set":
@@ -27,14 +35,14 @@ function crates(crate: text, method: text, p: player=%player%, secondMethod: tex
                         send "Please pass in a valid third method."
                     else:
                         set {%{_crate}%::Crate} to {_crateItem} 
-    else if {_method} is "get":
+    else if {_method} is "getcrate":
         if {_crate} is not "Eternal" or "Daily" or "Godly" or "Monthly":
             send "You must enter a valid crate."
         else:
             give 1 {%{_crate}%::Crate} to {_p}
-    else if {_method} is "key":
+    else if {_method} is "getkey":
         if {_crate} is not "Eternal" or "Daily" or "Godly" or "Monthly":
-            send "You must enter a valid crate."
+            send "You must enter a valid key."
         else:
             give 1 {%{_crate}%::Key} to {_p}
 
