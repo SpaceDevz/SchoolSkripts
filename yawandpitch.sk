@@ -1,0 +1,17 @@
+on player join:
+	set {playerList::*} to %player%
+	
+loop all players:
+	every 2 ticks:
+		set {%player%::YAW} to player's yaw
+		set {%player%::PITCH} to player's pitch
+		
+loop all players:
+    every 1 tick:
+        set {%player%::1TickYaw} to {%player%::YAW} - player's yaw * 20
+        set {%player%::1TickPitch} to {%player%::PITCH} - player's pitch * 20
+
+        if {%player%::1TickYaw} is greater than 95:
+            # code already done
+        else if {%player%::1TickPitch} is greater than 95:
+            # code already done
