@@ -1,6 +1,0 @@
-command /gems [<player>]:
-    if arg-1 is set:
-        send "%arg-1%'s Balance is: %{gemBalance::%arg-1%}%"
-    else:
-        send "Your balance is: %{gemBalance::%player%}%"
-    
